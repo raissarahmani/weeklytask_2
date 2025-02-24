@@ -4,7 +4,7 @@ import path, { join } from 'path';
 import consola from 'consola';
 import { fileURLToPath } from 'url';
 
-
+// define file name and directory
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -13,51 +13,57 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+// view files in directory
 async function viewFiles() {
   try {
     const files = await fs.readdir(__dirname);
     if (files.length === 0) {
       consola.info('No files found in the directory.');
     } else {
-      consola.success('Files in the directory:');
+      consola.info('Files in the directory:');
       files.forEach((file) => consola.log(`- ${file}`));
     }
   } catch (err) {
-    consola.error('Error reading directory:', err);
+    consola.error('Error: cannot read directory', err);
   }
 }
 
+// add new file
 async function addFile() {
   try {
-    const fileName = await rl.question('Enter the name of the new file (with extension): ');
-    const fileContent = await rl.question('Enter the content for the file: ');
+    const fileName = await rl.question('Enter name of the new file: ');
     const filePath = join(__dirname, fileName);
 
-    await fs.writeFile(filePath, fileContent);
-    consola.success(`File "${fileName}" has been created.`);
+    await fs.writeFile(filePath, '');
+    consola.success(`File "${fileName}" has been created`);
   } catch (err) {
-    consola.error('Error creating file:', err);
+    consola.error('Error has occured during creating file', err);
   }
-}
+} 
 
-async function removeFile() {
+// remove file
+async function deleteFile() {
   try {
-    const fileName = await rl.question('Enter the name of the file to delete: ');
+    const fileName = await rl.question('Enter name of the file you want to delete: ');
     const filePath = join(__dirname, fileName);
 
     await fs.unlink(filePath);
     consola.success(`File "${fileName}" has been deleted.`);
   } catch (err) {
-    consola.error('Error deleting file (maybe file not found):', err);
+    consola.error('Error has occured during deleting file', err);
   }
 }
 
-async function main() {
+async function optionToDo() {
   let running = true;
   while (running) {
-    consola.info('\n Choose an option:\n 1. View Files\n 2. Add File\n 3. Remove File\n 4. Exit');
-    const choice = await rl.question('Enter your choice (1-4): ');
-
+    consola.info(`
+Choose an option:
+1. View Files
+2. Add File
+3. Remove File
+`);
+    const choice = await rl.question('Enter your choice (1-3): ');
     switch (choice) {
       case '1':
         await viewFiles();
@@ -66,18 +72,12 @@ async function main() {
         await addFile();
         break;
       case '3':
-        await removeFile();
-        break;
-      case '4':
-        consola.success('Exiting the program.');
-        running = false;
+        await deleteFile();
         break;
       default:
-        consola.warn('Invalid choice, please enter 1-4.');
+        consola.warn('Please enter only 1-3.');
     }
   }
-
   rl.close();
 }
-
-main();
+ export default optionToDo

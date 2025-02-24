@@ -13,3 +13,4 @@ export function getDataFromServer(status,callback) {
 export function processData (successMsg) {
     console.log(successMsg)
 }
+

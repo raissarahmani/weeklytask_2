@@ -1,5 +1,3 @@
-import { stat } from "fs"
-
 function fetchData (status) {
     return new Promise(function (resolve, reject) {
         setTimeout (function() {
@@ -41,4 +39,3 @@ export async function fetchDataAsync(status) {
         console.log(er);
     }
 }
-

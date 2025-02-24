@@ -1,4 +1,5 @@
 const arrNameDom = () => {
+    setTimeout(function() {
     const links = "https://jsonplaceholder.typicode.com/users"
     fetch(links)
     .then((response) => {
@@ -24,6 +25,7 @@ const arrNameDom = () => {
     .catch((err) => {
         if (err instanceof Error) console.log(err.message)
     })
+}, 3500)
 }
 
 export default arrNameDom
