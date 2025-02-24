@@ -1,0 +1,17 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "main": "no1.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "raissa",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "consola": "^3.4.0",
+    "express": "^4.21.2"
+  }
+}
