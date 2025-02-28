@@ -17,13 +17,14 @@ Sebuah function yang menandai operasi asynchronous dengan 2 parameter, resolve d
 sedangkan 'catch' akan menangkap hasil dari reject, yaitu jika terjadi error
 */
 
-export const handleFetchData = (status) => {
+const handleFetchData = (status) => {
     return fetchData(status)
     .then((successMsg) => 
     console.log(successMsg))
     .catch((errorMsg) =>
     console.log(errorMsg))
 }
+handleFetchData(true)
 
 /*
 async-await
@@ -31,7 +32,7 @@ memiliki fungsi yang sama dengan promise, tetapi struktur yang dimiliki menyerup
 'try' dan 'catch' adalah method untuk error handling. dalam case ini, 'try' dan 'catch' digunakan bersamaan dengan 'async-await'
 'try' akan dijalankan jika proses berjalan dengan seharusnya. 'catch' akan dijalankan jika terdapat error yang muncul di 'try' dan akan menampilkan error
 */
-export async function fetchDataAsync(status) {
+async function fetchDataAsync(status) {
     try {
         const hasil = await fetchData(status)
         console.log(hasil);
@@ -39,3 +40,4 @@ export async function fetchDataAsync(status) {
         console.log(er);
     }
 }
+fetchDataAsync(true)
