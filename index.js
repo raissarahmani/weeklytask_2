@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import readline from 'readline/promises';
 import { join } from 'path';
 import consola from 'consola';
+import optionToDo from './minitask/no6';
 
 const rl = readline.createInterface({
   input: process.stdin,
