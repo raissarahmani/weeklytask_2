@@ -1,4 +1,4 @@
-export function getDataFromServer(status,callback) {
+function getDataFromServer(status,callback) {
     setTimeout(function() {
         if(status) {
             callback(['product 1', 'product 2', 'product 3'], null)
@@ -10,7 +10,9 @@ export function getDataFromServer(status,callback) {
     }, 3000)
 }
 
-export function processData (successMsg) {
+function processData (successMsg) {
     console.log(successMsg)
 }
+
+getDataFromServer(true,processData)
 
