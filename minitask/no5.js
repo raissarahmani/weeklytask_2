@@ -1,5 +1,4 @@
 function divideSort (deret) {
-    setTimeout (function () {
         if(typeof deret !== "number") {
             console.log(`${deret} bukan merupakan deret angka`);
         } else {
@@ -10,7 +9,5 @@ function divideSort (deret) {
             const result = parseInt(sortedSegment)
             console.log(result);
         }
-    }, 3500)
 }
-
-export default divideSort
+divideSort(439820273307374)
